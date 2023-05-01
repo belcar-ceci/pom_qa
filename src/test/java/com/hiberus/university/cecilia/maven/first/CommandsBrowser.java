@@ -18,7 +18,7 @@ public class CommandsBrowser {
 
         driver.get("https://www.hiberus.com/");
 
-        String title = driver.getTitle();
+        String title = driver.getPageSource();
         System.out.println(title);
 
         //Thread.sleep(5000);
