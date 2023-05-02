@@ -27,11 +27,14 @@ public class CommandsBrowser {
         int largoTitle = title.length();
 
         //PASO 4
-        System.out.println("El título de la página es: " + title);
-        System.out.println("La longitud del título es: " + largoTitle);
+
+        System.out.println("The page title is: " + title);
+        System.out.println("La length of the title is: " + largoTitle);
 
         //PASO 5
-
+        //String urlActual = driver.getCurrentUrl();
+        //boolean esCorrecta = urlActual.equals(url);
+        //System.out.println("Is the page correct? " + esCorrecta);
 
         String urlActual = driver.getCurrentUrl();
         if(urlActual.equals(url)) {
@@ -49,7 +52,7 @@ public class CommandsBrowser {
         System.out.println("The length of the page source is: " + lengthFont);
 
         //Thread.sleep(5000);
-        driver.quit();
+        driver.close();
 
     }
 
