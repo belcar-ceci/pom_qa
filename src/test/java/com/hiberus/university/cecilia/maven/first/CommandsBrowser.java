@@ -31,9 +31,15 @@ public class CommandsBrowser {
         System.out.println("La longitud del título es: " + largoTitle);
 
         //PASO 5
+
+
         String urlActual = driver.getCurrentUrl();
-        boolean esCorrecta = urlActual.equals(url);
-        System.out.println("Is the page correct? " + esCorrecta);
+        if(urlActual.equals(url)) {
+            System.out.println("The URL is correct.");
+        } else {
+            System.out.println("The URL is not correct.");
+        }
+
 
         //PASO 6
         String codeFont = driver.getPageSource();
@@ -43,7 +49,7 @@ public class CommandsBrowser {
         System.out.println("The length of the page source is: " + lengthFont);
 
         //Thread.sleep(5000);
-        //driver.quit();
+        driver.quit();
 
     }
 
