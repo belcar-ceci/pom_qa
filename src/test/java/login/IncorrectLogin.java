@@ -44,12 +44,14 @@ public class IncorrectLogin {
         loginEnter.click();
 
         //Step 5
-        String pageActual = driver.getCurrentUrl();
+        WebElement errorLogin = driver.findElement(By.xpath("//h3[@data-test='error']"));
 
-        if("https://www.saucedemo.com/inventory.html".equals(pageActual)){
-            System.out.println("The URL is correct and it displays correctly" + pageActual );
+
+
+        if(errorLogin.isDisplayed()){
+            System.out.println("Show an error message, the username is failed" );
         } else {
-            System.out.println("Failed Test. The URL is not correct. The does not correspond to what was expected: " + pageActual);
+            System.out.println("Does not show error message, repeat the test");
         }
 
         driver.close();
