@@ -21,7 +21,7 @@ public class LoginInit {
 la URL
         * */
 
-        //
+        //Initial Step
         WebDriver driver;
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
@@ -51,5 +51,7 @@ la URL
         } else {
             System.out.println("The URL is not correct. The does not correspond to what was expected: " + pageActual);
         }
+
+        driver.close();
     }
 }
