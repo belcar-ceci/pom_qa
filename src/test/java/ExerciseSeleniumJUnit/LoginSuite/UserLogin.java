@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 //import org.openqa.selenium.firefox.FirefoxDriver;
@@ -22,6 +23,8 @@ public class UserLogin {
 
     WebDriver driver;
     WebDriverWait wait;
+
+
 
     String url = "https://www.saucedemo.com/";
     String username = "standard_user";
@@ -69,6 +72,28 @@ public class UserLogin {
 
     @Test
     public void validationLoginError(){
+        //Step 2
+        driver.findElement(By.xpath("//input[@data-test='username']")).sendKeys(username);
+
+        //Step 3
+
+        WebElement pass = driver.findElement(By.xpath("//input[@data-test='password']"));
+        pass.sendKeys("secrets_sauce");
+        //Step 4
+        driver.findElement(By.xpath("//input[@data-test='login-button']")).click();
+
+        //Step 5
+        WebElement errorLogin = driver.findElement(By.xpath("//h3[@data-test='error']"));
+
+
+
+        if(errorLogin.isDisplayed()){
+            System.out.println("Show an error message, the username is failed" );
+        } else {
+            System.out.println("Does not show error message, repeat the test");
+        }
+
+
 
     }
 
