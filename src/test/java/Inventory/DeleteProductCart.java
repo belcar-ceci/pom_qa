@@ -66,5 +66,8 @@ public class DeleteProductCart {
 
         }
 
+        // Closed Step
+        driver.quit();
+
     }
 }

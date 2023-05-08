@@ -1,6 +1,7 @@
 package Inventory;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -52,6 +53,8 @@ public class IncreaseCartValue {
             // Find the product counter element in the cart, and verify that its value has changed.
             WebElement cartBadge = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']"));
             String badgeValue = cartBadge.getText();
+
+            String expectedNumber = "1";
             if (badgeValue.equals("1")) {
                 System.out.println("El producto se agregó correctamente al carrito.");
             } else {
@@ -60,6 +63,8 @@ public class IncreaseCartValue {
         } catch (Exception messageError) {
             System.out.println("No se logro agregar el producto al carrito debido a una excepción: " + messageError.getMessage());
         }
+
+
 
         // Closed Step
         driver.quit();
