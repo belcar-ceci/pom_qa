@@ -6,10 +6,11 @@ public class PagesFactory {
     private static PagesFactory pagesFactories;
 
     private final WebDriver driver;
+    private final LoginPage loginPage;
 
     private PagesFactory(WebDriver driver) {
         this.driver = driver;
-        // inializar nuestras Pages
+        loginPage = new LoginPage(driver);
     }
 
     public static void start(WebDriver driver) {

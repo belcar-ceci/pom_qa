@@ -1,12 +1,13 @@
 package com.hiberus.university.cecilia.maven.first.pages;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Wait;
 
-
-public class AbstractPage {
+@Slf4j
+public abstract class AbstractPage {
     private final WebDriver driver;
     protected Wait<WebDriver> wait;
 
@@ -29,5 +30,5 @@ public class AbstractPage {
     }
 
 
-
+    public abstract WebElement getPageLoadedTestElement();
 }
