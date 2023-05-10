@@ -64,10 +64,7 @@ public class UserLogin {
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail("Error while waiting for URL: " + e.getMessage());
-        } finally {
-            driver.close();
         }
-
     }
 
     @Test
@@ -85,8 +82,6 @@ public class UserLogin {
         //Step 5
         WebElement errorLogin = driver.findElement(By.xpath("//h3[@data-test='error']"));
 
-
-
         if(errorLogin.isDisplayed()){
             System.out.println("Show an error message, the username is failed" );
         } else {
@@ -99,6 +94,8 @@ public class UserLogin {
 
     @After
     public void TearDown(){
+
+        driver.quit();
 
 
     }
