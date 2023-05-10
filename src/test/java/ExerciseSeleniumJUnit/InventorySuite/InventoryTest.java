@@ -66,6 +66,13 @@ public class InventoryTest {
 
     @Test
     public void ProductInInventory(){
+        /*
+        * 1. Ir a la página https://www.saucedemo.com
+        2. Escribir el username standard_user
+        3. Escribir el password secret_sauce
+        4. Pulsar en el botón del Login.
+        5  . Validar que el producto Sauce Labs Bolt T-Shirt aparece en el inventario.
+        */
 
         //Step 2
         driver.findElement(By.xpath("//input[@data-test='username']")).sendKeys(username);
@@ -85,6 +92,32 @@ public class InventoryTest {
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail("Error: product has not been validated in inventory");
+        }
+    }
+
+    @Test
+    public void AddProductInCart(){
+
+        //Step 2
+        driver.findElement(By.xpath("//input[@data-test='username']")).sendKeys(username);
+
+        //Step 3
+        driver.findElement(By.xpath("//input[@data-test='password']")).sendKeys(password);
+
+        //Step 4
+        driver.findElement(By.xpath("//input[@data-test='login-button']")).click();
+
+        //Step 5
+        WebElement addToCartButton = driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bolt-t-shirt']"));
+        addToCartButton.click();
+
+        // Paso 6: Validar que, en el icono del carrito, se ha agregado 1 producto
+        WebElement cartIcon = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']"));
+        String cartItemCount = cartIcon.getText();
+        if (cartItemCount.equals("1")) {
+            System.out.println("1 product has been successfully added to the cart.");
+        } else {
+            System.out.println("No products have been added to the cart.");
         }
 
     }
