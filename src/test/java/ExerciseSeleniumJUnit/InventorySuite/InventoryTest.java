@@ -12,8 +12,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.assertEquals;
 
 public class InventoryTest {
 
@@ -166,10 +172,89 @@ public class InventoryTest {
 
     }
 
+    @Test
+    public void AddCartThreeProducts(){
+
+        //Step 2
+        driver.findElement(By.xpath("//input[@data-test='username']")).sendKeys(username);
+
+        //Step 3
+        driver.findElement(By.xpath("//input[@data-test='password']")).sendKeys(password);
+
+        //Step 4
+        driver.findElement(By.xpath("//input[@data-test='login-button']")).click();
+
+        // Step 5. Add three random products
+        List<WebElement> productAddElements = driver.findElements(By.xpath("//button[contains(@data-test,'add-to-cart')]"));
+        int addProducts = 3;
+        int[] numbers = new int[addProducts];
+        for(int i = 0; i < addProducts; i++) {
+            boolean test1;
+            int numero;
+            do{
+                test1 = false;
+                numero = (int)(Math.random()* productAddElements.size());
+
+                for (int j= 0; j<numbers.length; j++){
+                    if (numero == numbers[j]){
+                        test1 = true;
+                    }
+                }
+            } while (test1);
+            numbers[i]= numero;
+            productAddElements.get(numero).click();
+        }
+
+        //Step 6.validate 3 products
+        wait = new WebDriverWait(driver, 5);
+        WebElement spanCart = null;
+        try{
+            spanCart = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//span[@class='shopping_cart_badge']"))));
+            String spanCart3 = spanCart.getText();
+            if (spanCart3.equals("3")) {
+                System.out.println("Three products have been randomly added..");
+            } else {
+                System.out.println("Error: Products were not added");
+            }
+
+        } catch (Exception e){
+            Assert.fail("Error: Item not found" + e.getMessage());
+        }
+
+    }
+
+    @Test
+    public void SortAlphabeticalOrderZ_A(){
+        //Step 2
+        driver.findElement(By.xpath("//input[@data-test='username']")).sendKeys(username);
+
+        //Step 3
+        driver.findElement(By.xpath("//input[@data-test='password']")).sendKeys(password);
+
+        //Step 4
+        driver.findElement(By.xpath("//input[@data-test='login-button']")).click();
+
+        //Step 5 Select Dropdown Z-A
+
+        Select drpOrder = new Select(driver.findElement(By.xpath("//select[@class='product_sort_container']")));
+        drpOrder.selectByValue("za");
+
+
+        // Step 6: Validate that the selected filter sorts by alphabetical order from Z to A
+        try {
+            WebElement firstProduct = driver.findElement(By.xpath("//div[normalize-space()='Test.allTheThings() T-Shirt (Red)']"));
+            String firstProductName = firstProduct.getText();
+            Assert.assertEquals("Test that validates the filtering order by name Z-A", "Test.allTheThings() T-Shirt (Red)", firstProductName);
+        } catch (Exception e) {
+            Assert.fail("Error: filter order not validated: " + e.getMessage());
+        }
+
+    }
+
     @After
     public void TearDown(){
         //step closure
-        //driver.quit();
+        driver.quit();
 
     }
 
