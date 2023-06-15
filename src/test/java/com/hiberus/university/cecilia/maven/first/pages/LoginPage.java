@@ -1,6 +1,6 @@
 package com.hiberus.university.cecilia.maven.first.pages;
 
-import io.cucumber.core.logging.Logger;
+//import io.cucumber.core.logging.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,13 +28,13 @@ public class LoginPage extends AbstractPage{
     }
 
     public void clickLogin(){
-        log.info("Logging in...");
+        /*log.info("Logging in...");
         try{
             loginButton.click();
         } catch(TimeoutException timeoutException){
             log.info("Timeout clicking login: " + timeoutException.getClass().getSimpleName());
 
-        }
+        }*/
 
 
     }
